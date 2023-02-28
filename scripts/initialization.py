@@ -30,10 +30,11 @@ def ure5_initi():
 		pos_cmd_point.positions.append(0.0)
 	# set the ideal time to destination
 	pos_cmd_point.time_from_start = rospy.Duration(1.0) # here one second 
-	# just change the value of the command for the second joint
-	pos_cmd_point.positions[1] = -math.pi/4
-	# just change the value of the command for the elbow joint
-	pos_cmd_point.positions[0] = math.pi/4
+	# starting position configuration
+	pos_cmd_point.positions[0] = math.pi/2
+	pos_cmd_point.positions[1] = -math.pi/3
+	pos_cmd_point.positions[3] = (2*math.pi)/3
+	pos_cmd_point.positions[4] = -math.pi/2
 	# add the trajectory point to the command
 	pos_cmd.points.append(pos_cmd_point)
 	# define a message header	
@@ -48,7 +49,6 @@ def ure5_initi():
 		pos_pub.publish(pos_cmd)
 		# wait for 0.1 seconds until the next loop and repeat
 		loop_rate.sleep()
-		
 if __name__ == '__main__':
 	# initialize
 	rospy.init_node('phase1', anonymous = True)
